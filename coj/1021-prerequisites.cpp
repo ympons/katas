@@ -6,9 +6,9 @@ int main() {
 	int curso, cat, kp; bool puedo;
 	scanf("%d", &k);
 	while (k!=0) {
-    scanf("%d", &m);
+    	scanf("%d", &m);
 		for (int i = 0; i < k; i++) scanf("%d", &cursos[i]);
-    puedo = true;
+    	puedo = true;
 		for (int i = 0; i < m; i++) {
 			scanf("%d%d", &kp, &cat); int cont = 0;
 			while (kp--) {
@@ -22,7 +22,7 @@ int main() {
 			printf("yes\n");
 		else
 			printf("no\n");
-    scanf("%d", &k);
+    	scanf("%d", &k);
 	}
 	return 0;
 }
