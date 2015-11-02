@@ -7,17 +7,24 @@ import (
 
 // Undirected Graph Api
 type Graph interface {
+	// number of vertices
 	V() int
+	// number of edges
 	E() int
+	// add an edge
 	AddEgde(int, int)
+	// vertices adjacent to a vertex
 	Adj(int) []int
+	// string representation
 	String() string
 }
 
 // Just a Graph factory interface
 type GraphFactory interface {
+	// Create an empty graph with n vertices
 	NewGraph(int) Graph
-	NewGraphFromStream(io.Reader) Graph
+	// Create a graph from a reader
+	NewGraphFromReader(io.Reader) Graph
 }
 
 type graph_ struct {
@@ -34,7 +41,7 @@ func NewGraph(n int) *graph_{
 	return &graph_{ v_: n, e_: 0, adj_: adj }
 }
 
-// Create a new graph from reader
+// Create a graph from a reader
 func NewGraphFromStream(r io.Reader) *graph_{
 	var n, E int
 
@@ -50,28 +57,34 @@ func NewGraphFromStream(r io.Reader) *graph_{
 	return g
 }
 
+// Add an edge v-w 
 func (g *graph_) AddEdge(v, w int) {
 	g.adj_[v] = append(g.adj_[v], w)
 	g.adj_[w] = append(g.adj_[w], v)
 	g.e_++
 }
 
+// Number of vertices
 func (g graph_) V() int {
 	return g.v_
 }
 
+// Number of edges
 func (g graph_) E() int {
 	return g.e_
 }
 
+// Vertices adjacent to v
 func (g graph_) Adj(v int) []int {
 	return g.adj_[v]
 }
 
+// String representation
 func (g graph_) String() string {
 	return ""
 }
 
+// Graph-processing:
 // compute the degree of v
 func degree(G Graph, v int) int {
 	degree := 0;
