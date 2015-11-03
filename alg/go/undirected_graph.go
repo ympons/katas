@@ -42,7 +42,7 @@ func NewGraph(n int) *graph_{
 }
 
 // Create a graph from a reader
-func NewGraphFromStream(r io.Reader) *graph_{
+func NewGraphFromReader(r io.Reader) *graph_{
 	var n, E int
 
 	fmt.Fscanf(r, "%d", &n)

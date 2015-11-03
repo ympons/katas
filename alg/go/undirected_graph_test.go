@@ -7,6 +7,6 @@ import (
 
 func TestNewGraph(t *testing.T) {
 	f, _ := os.Open("tinyG.txt")
-	g := NewGraphFromStream(f)
+	g := NewGraphFromReader(f)
 	t.Log(g.V(), g.E())
 }
