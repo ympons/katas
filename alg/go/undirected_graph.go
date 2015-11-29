@@ -1,8 +1,8 @@
 package main
 
 import (
-	"io"
 	"fmt"
+	"io"
 )
 
 // Undirected Graph Api
@@ -12,7 +12,7 @@ type Graph interface {
 	// number of edges
 	E() int
 	// add an edge
-	AddEgde(int, int)
+	AddEdge(int, int)
 	// vertices adjacent to a vertex
 	Adj(int) []int
 	// string representation
@@ -29,20 +29,20 @@ type GraphFactory interface {
 
 type graph_ struct {
 	v_, e_ int
-	adj_ [][]int
+	adj_   [][]int
 }
 
 // Create a new graph
-func NewGraph(n int) *graph_{
+func NewGraph(n int) *graph_ {
 	adj := make([][]int, n)
 	for v := 0; v < n; v++ {
 		adj[v] = make([]int, 0, n)
 	}
-	return &graph_{ v_: n, e_: 0, adj_: adj }
+	return &graph_{v_: n, e_: 0, adj_: adj}
 }
 
 // Create a graph from a reader
-func NewGraphFromReader(r io.Reader) *graph_{
+func NewGraphFromReader(r io.Reader) *graph_ {
 	var n, E int
 
 	fmt.Fscanf(r, "%d", &n)
@@ -57,7 +57,7 @@ func NewGraphFromReader(r io.Reader) *graph_{
 	return g
 }
 
-// Add an edge v-w 
+// Add an edge v-w
 func (g *graph_) AddEdge(v, w int) {
 	g.adj_[v] = append(g.adj_[v], w)
 	g.adj_[w] = append(g.adj_[w], v)
@@ -87,7 +87,7 @@ func (g graph_) String() string {
 // Graph-processing:
 // compute the degree of v
 func degree(G Graph, v int) int {
-	degree := 0;
+	degree := 0
 	for _ = range G.Adj(v) {
 		degree++
 	}
@@ -120,5 +120,109 @@ func numberOfSelfLoops(G Graph) int {
 			}
 		}
 	}
-	return count/2
+	return count / 2
+}
+
+// Graph processing
+type Paths interface {
+	HasPathTo(int) bool
+	PathTo(int) []int
+}
+
+// Depth-first search
+type dfsPaths_ struct {
+	marked []bool
+	edgeTo []int
+	s      int
+}
+
+func NewDFSPaths(g Graph, s int) *dfsPaths_ {
+	paths := &dfsPaths_{
+		marked: make([]bool, g.V()),
+		edgeTo: make([]int, g.V()),
+		s:      s,
+	}
+	paths.dfs(g, s)
+
+	return paths
+}
+
+func (p *dfsPaths_) dfs(g Graph, v int) {
+	p.marked[v] = true
+	for w := range g.Adj(v) {
+		if !p.marked[w] {
+			p.dfs(g, w)
+			p.edgeTo[w] = v
+		}
+	}
+}
+
+func (p *dfsPaths_) HasPathTo(v int) bool {
+	return p.marked[v]
+}
+
+func (p *dfsPaths_) PathTo(v int) []int {
+	if !p.marked[v] {
+		return nil
+	}
+
+	path := make([]int, 0, len(p.marked))
+	for x := v; x != p.s; x = p.edgeTo[x] {
+		path = append(path, x)
+	}
+	path = append(path, p.s)
+
+	return path
+}
+
+// Breadth-first search
+type bfsPaths_ struct {
+	marked []bool
+	edgeTo []int
+	s      int
+}
+
+func NewBFSPaths(g Graph, s int) *bfsPaths_ {
+	paths := &bfsPaths_{
+		marked: make([]bool, g.V()),
+		edgeTo: make([]int, g.V()),
+		s:      s,
+	}
+	paths.bfs(g, s)
+
+	return paths
+}
+
+func (p *bfsPaths_) bfs(g Graph, s int) {
+	p.marked[s] = true
+	q := NewQueue()
+	q.Enqueue(s)
+	for !q.IsEmpty() {
+		v, _ := q.Dequeue()
+		for w := range g.Adj(v) {
+			if !p.marked[w] {
+				q.Enqueue(w)
+				p.marked[w] = true
+				p.edgeTo[w] = v
+			}
+		}
+	}
+}
+
+func (p *bfsPaths_) HasPathTo(v int) bool {
+	return p.marked[v]
+}
+
+func (p *bfsPaths_) PathTo(v int) []int {
+	if !p.marked[v] {
+		return nil
+	}
+
+	path := make([]int, 0, len(p.marked))
+	for x := v; x != p.s; x = p.edgeTo[x] {
+		path = append(path, x)
+	}
+	path = append(path, p.s)
+
+	return path
 }
