@@ -81,7 +81,7 @@ func (g graph_) Adj(v int) []int {
 
 // String representation
 func (g graph_) String() string {
-	return ""
+	return fmt.Sprintf("graph: V: %d E: %d -> %+v", g.V(), g.E(), g.adj_)
 }
 
 // Graph-processing:
@@ -149,7 +149,7 @@ func NewDFSPaths(g Graph, s int) *dfsPaths_ {
 
 func (p *dfsPaths_) dfs(g Graph, v int) {
 	p.marked[v] = true
-	for w := range g.Adj(v) {
+	for _, w := range g.Adj(v) {
 		if !p.marked[w] {
 			p.dfs(g, w)
 			p.edgeTo[w] = v
@@ -199,7 +199,7 @@ func (p *bfsPaths_) bfs(g Graph, s int) {
 	q.Enqueue(s)
 	for !q.IsEmpty() {
 		v, _ := q.Dequeue()
-		for w := range g.Adj(v) {
+		for _, w := range g.Adj(v) {
 			if !p.marked[w] {
 				q.Enqueue(w)
 				p.marked[w] = true
@@ -225,4 +225,55 @@ func (p *bfsPaths_) PathTo(v int) []int {
 	path = append(path, p.s)
 
 	return path
+}
+
+// Connected Components
+type CC interface{
+	Connected(v, w int) bool
+	Count() int
+	Id(v int) int
+}
+
+type cc_ struct {
+	marked []bool
+	id []int
+	count int
+}
+
+func NewCC(g Graph) *cc_ {
+	cc := &cc_{
+		marked: make([]bool, g.V()),
+		id: make([]int, g.V()),
+		count: 0,
+	}
+	for v := 0; v < g.V(); v++ {
+		if !cc.marked[v] {
+			cc.dfs(g, v)
+			cc.count++
+		}
+	}
+
+	return cc
+}
+
+func (c *cc_) dfs(g Graph, v int) {
+	c.marked[v] = true
+	c.id[v] = c.count
+	for _, w := range g.Adj(v) {
+		if !c.marked[w] {
+			c.dfs(g, w)
+		}
+	}
+}
+
+func (c cc_) Connected(v, w int) bool {
+	return c.id[v] == c.id[w]
+}
+
+func (c cc_) Count() int {
+	return c.count
+}
+
+func (c cc_) Id(v int) int {
+	return c.id[v]
 }
