@@ -47,3 +47,9 @@ func TestCC(t *testing.T) {
 	cc := NewCC(g)
 	t.Log(cc.Count())
 }
+
+func TestBipartite(t *testing.T) {
+	g := graphTest(t)
+	b := NewBipartite(g)
+	t.Log(b.IsBipartite())
+}
