@@ -157,6 +157,23 @@ func (p *dfsPaths_) dfs(g Graph, v int) {
 	}
 }
 
+func (p *dfsPaths_) iterativeDfs(g Graph, v int) {
+	p.marked[v] = true
+	s := NewStack()
+	for _, w := range g.Adj(v) {
+		s.Push(w)
+	}
+	for !s.IsEmpty() {
+		w, _ := s.Pop()
+		for _, u := range g.Adj(w) {
+			if !p.marked[u] {
+				p.marked[u] = true
+				s.Push(u)
+			}
+		}
+	}
+}
+
 func (p *dfsPaths_) HasPathTo(v int) bool {
 	return p.marked[v]
 }
