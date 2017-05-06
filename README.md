@@ -1,7 +1,7 @@
 # Challenges
-I really enjoy the competitive programming, so this repo is to share my solved challenges and hacks ;-)
+I really enjoy the competitive programming, so this repo is to share my solved challenges and hacks :wink:
 
-I share some of [my gists](https://gist.github.com/ympons) too. :P
+I share some of [my gists](https://gist.github.com/ympons) too. :grin:
 
 ## Online contest and training resources
 
