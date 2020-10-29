@@ -18,6 +18,17 @@ func TestAddTwoNumbers(t *testing.T) {
 	}
 }
 
+func TestAddTwoNumbersOld(t *testing.T) {
+	assert := assert.New(t)
+	for _, test := range tests {
+		output := addTwoNumbersOld(
+			essentials.IntsToList(test.l1),
+			essentials.IntsToList(test.l2),
+		)
+		assert.Equal(test.expected, essentials.ListToInts(output))
+	}
+}
+
 var tests = []struct {
 	l1       []int
 	l2       []int
