@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/ympons/challenges/essentials"
+	"github.com/ympons/katas/essentials"
 )
 
 func TestAddTwoNumbers(t *testing.T) {

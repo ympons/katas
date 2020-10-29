@@ -1,6 +1,6 @@
 package leetcode
 
-import "github.com/ympons/challenges/essentials"
+import "github.com/ympons/katas/essentials"
 
 // ListNode represents a singly linked list node.
 type ListNode = essentials.ListNode
