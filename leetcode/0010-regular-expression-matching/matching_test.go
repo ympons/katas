@@ -34,29 +34,29 @@ var tests = []struct {
 	s, p     string
 	expected bool
 }{
-	// {
-	// 	s:        "aa",
-	// 	p:        "a",
-	// 	expected: false,
-	// },
-	// {
-	// 	s:        "aa",
-	// 	p:        "a*",
-	// 	expected: true,
-	// },
-	// {
-	// 	s:        "ab",
-	// 	p:        ".*",
-	// 	expected: true,
-	// },
+	{
+		s:        "aa",
+		p:        "a",
+		expected: false,
+	},
+	{
+		s:        "aa",
+		p:        "a*",
+		expected: true,
+	},
+	{
+		s:        "ab",
+		p:        ".*",
+		expected: true,
+	},
 	{
 		s:        "aab",
 		p:        "c*a*b",
 		expected: true,
 	},
-	// {
-	// 	s:        "mississippi",
-	// 	p:        "mis*is*p*.",
-	// 	expected: false,
-	// },
+	{
+		s:        "mississippi",
+		p:        "mis*is*p*.",
+		expected: false,
+	},
 }
