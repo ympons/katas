@@ -16,7 +16,7 @@
 |:white_check_mark:| 64 | [Minimum Path Sum](https://github.com/ympons/katas/tree/master/leetcode/0064-minimum-path-sum) | Medium |
 |:white_check_mark:| 70 | [Climbing Stairs](https://github.com/ympons/katas/tree/master/leetcode/0070-climbing-stairs) | Easy |
 |:white_check_mark:| 72 | [Edit Distance](https://github.com/ympons/katas/tree/master/leetcode/0072-edit-distance) | Hard |
-|                  | 85 | [Maximal Rectangle](https://github.com/ympons/katas/tree/master/leetcode/0085-maximal-rectangle) | Hard |
+|:white_check_mark:| 85 | [Maximal Rectangle](https://github.com/ympons/katas/tree/master/leetcode/0085-maximal-rectangle) | Hard |
 |                  | 87 | Scramble String | Hard |
 |                  | 91 | Decode Ways | Medium |
 |                  | 95 | Unique Binary Search Trees II | Medium |
