@@ -14,6 +14,14 @@ func TestMaxSlidingWindow(t *testing.T) {
 	}
 }
 
+func TestMaxSlidingWindowPQ(t *testing.T) {
+	assert := assert.New(t)
+	for _, test := range tests {
+		output := maxSlidingWindowPQ(test.nums, test.k)
+		assert.Equal(test.expected, output)
+	}
+}
+
 var tests = []struct {
 	nums     []int
 	k        int

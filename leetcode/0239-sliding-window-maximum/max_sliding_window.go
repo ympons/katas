@@ -3,6 +3,35 @@ package leetcode
 import "container/heap"
 
 func maxSlidingWindow(nums []int, k int) []int {
+	n := len(nums)
+	maxLeft, maxRight := make([]int, n), make([]int, n)
+	maxLeft[0] = nums[0]
+	maxRight[n-1] = nums[n-1]
+	for i, j := 1, n-1; i < n; i++ {
+		maxLeft[i] = nums[i]
+		if i%k > 0 && maxLeft[i-1] > maxLeft[i] {
+			maxLeft[i] = maxLeft[i-1]
+		}
+
+		j = n - i - 1
+		maxRight[j] = nums[j]
+		if j%k > 0 && maxRight[j+1] > maxRight[j] {
+			maxRight[j] = maxRight[j+1]
+		}
+	}
+	window, max := make([]int, 0, n-k+1), 0
+	for i := 0; i+k <= n; i++ {
+		if maxRight[i] > maxLeft[i+k-1] {
+			max = maxRight[i]
+		} else {
+			max = maxLeft[i+k-1]
+		}
+		window = append(window, max)
+	}
+	return window
+}
+
+func maxSlidingWindowPQ(nums []int, k int) []int {
 	pq, i := make(PQ, 0, k), 0
 	for ; i < k; i++ {
 		heap.Push(&pq, &Item{value: i, priority: nums[i], index: i})
