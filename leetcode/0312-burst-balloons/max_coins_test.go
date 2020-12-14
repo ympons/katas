@@ -14,6 +14,14 @@ func TestMaxCoins(t *testing.T) {
 	}
 }
 
+func TestMaxCoinsRecursive(t *testing.T) {
+	assert := assert.New(t)
+	for _, test := range tests {
+		output := maxCoinsRecursive(test.input)
+		assert.Equal(test.expected, output)
+	}
+}
+
 var tests = []struct {
 	input    []int
 	expected int
