@@ -2,6 +2,36 @@ package leetcode
 
 import "container/heap"
 
+// monotonic queue - O(n)
+func maxSlidingWindowDeque(nums []int, k int) []int {
+	n := len(nums)
+	if n == 0 || k == 0 {
+		return []int{}
+	}
+
+	// number of windows
+	window := make([]int, n-k+1)
+	// store indexes
+	deque := []int{}
+	for i := 0; i < n; i++ {
+		// remove numbers out of range k
+		for len(deque) > 0 && deque[0] <= i-k {
+			deque = deque[1:]
+		}
+		// remove smaller numbers in k range
+		for len(deque) > 0 && nums[deque[len(deque)-1]] < nums[i] {
+			deque = deque[:len(deque)-1]
+		}
+		// add nums[i]
+		deque = append(deque, i)
+		// add to the windows
+		if i >= k-1 {
+			window[i-k+1] = nums[deque[0]]
+		}
+	}
+	return window
+}
+
 func maxSlidingWindow(nums []int, k int) []int {
 	n := len(nums)
 	maxLeft, maxRight := make([]int, n), make([]int, n)
