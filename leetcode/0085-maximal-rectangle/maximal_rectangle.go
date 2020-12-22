@@ -1,6 +1,44 @@
 package leetcode
 
+// monotonic queue
 func maximalRectangle(matrix [][]byte) int {
+	n := len(matrix)
+	if n == 0 {
+		return 0
+	}
+	m := len(matrix[0])
+	if m == 0 {
+		return 0
+	}
+	H, answer := make([]int, m+1), 0
+	for i := 0; i < n; i++ {
+		for j := 0; j < m; j++ {
+			if matrix[i][j] == '1' {
+				H[j]++
+			} else {
+				H[j] = 0
+			}
+		}
+		deque := []int{}
+		for j := 0; j <= m; j++ {
+			for len(deque) > 0 && H[deque[len(deque)-1]] >= H[j] {
+				height := H[deque[len(deque)-1]]
+				deque = deque[:len(deque)-1]
+				width := j
+				if len(deque) > 0 {
+					width = j - 1 - deque[len(deque)-1]
+				}
+				if area := height * width; answer < area {
+					answer = area
+				}
+			}
+			deque = append(deque, j)
+		}
+	}
+	return answer
+}
+
+func maximalRectangleDP(matrix [][]byte) int {
 	n := len(matrix)
 	if n == 0 {
 		return 0

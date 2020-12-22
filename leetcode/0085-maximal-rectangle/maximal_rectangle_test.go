@@ -14,6 +14,14 @@ func TestMaximalRectangle(t *testing.T) {
 	}
 }
 
+func TestMaximalRectangleDP(t *testing.T) {
+	assert := assert.New(t)
+	for _, test := range tests {
+		output := maximalRectangleDP(test.input)
+		assert.Equal(test.expected, output)
+	}
+}
+
 var tests = []struct {
 	input    [][]byte
 	expected int
