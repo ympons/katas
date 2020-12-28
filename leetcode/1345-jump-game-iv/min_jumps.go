@@ -27,7 +27,7 @@ func minJumps(arr []int) int {
 					visited[j] = struct{}{}
 				}
 			}
-			graph[arr[i]] = []int{}
+			delete(graph, arr[i])
 		}
 		steps++
 	}
