@@ -17,10 +17,10 @@
 |:white_check_mark:| 70 | [Climbing Stairs](https://github.com/ympons/katas/tree/master/leetcode/0070-climbing-stairs) | Easy |
 |:white_check_mark:| 72 | [Edit Distance](https://github.com/ympons/katas/tree/master/leetcode/0072-edit-distance) | Hard |
 |:white_check_mark:| 85 | [Maximal Rectangle](https://github.com/ympons/katas/tree/master/leetcode/0085-maximal-rectangle) | Hard |
-|                  | 87 | [Scramble String](https://github.com/ympons/katas/tree/master/leetcode/0087-scramble-string) | Hard |
-|                  | 91 | [Decode Ways](https://github.com/ympons/katas/tree/master/leetcode/0091-decode-ways) | Medium |
-|                  | 95 | [Unique Binary Search Trees II](https://github.com/ympons/katas/tree/master/leetcode/0095-unique-binary-search-trees-ii) | Medium |
-|                  | 96 | [Unique Binary Search Trees](https://github.com/ympons/katas/tree/master/leetcode/0096-unique-binary-search-trees) | Medium |
+|:white_check_mark:| 87 | [Scramble String](https://github.com/ympons/katas/tree/master/leetcode/0087-scramble-string) | Hard |
+|:white_check_mark:| 91 | [Decode Ways](https://github.com/ympons/katas/tree/master/leetcode/0091-decode-ways) | Medium |
+|:white_check_mark:| 95 | [Unique Binary Search Trees II](https://github.com/ympons/katas/tree/master/leetcode/0095-unique-binary-search-trees-ii) | Medium |
+|:white_check_mark:| 96 | [Unique Binary Search Trees](https://github.com/ympons/katas/tree/master/leetcode/0096-unique-binary-search-trees) | Medium |
 |:white_check_mark:| 221 | [Maximal Square](https://github.com/ympons/katas/tree/master/leetcode/0221-maximal-square) | Medium |
 |:white_check_mark:| 256 | [Paint House](https://github.com/ympons/katas/tree/master/leetcode/0256-paint-house) :lock:| Medium |
 |                  | 265 | [Paint House II](https://github.com/ympons/katas/tree/master/leetcode/0265-paint-house-ii) :lock:| Hard |
