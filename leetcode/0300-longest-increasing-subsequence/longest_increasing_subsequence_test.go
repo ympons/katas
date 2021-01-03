@@ -14,6 +14,14 @@ func TestLengthOfLIS(t *testing.T) {
 	}
 }
 
+func TestLengthOfLISOld(t *testing.T) {
+	assert := assert.New(t)
+	for _, test := range tests {
+		output := lengthOfLISOld(test.input)
+		assert.Equal(test.expected, output)
+	}
+}
+
 var tests = []struct {
 	input    []int
 	expected int

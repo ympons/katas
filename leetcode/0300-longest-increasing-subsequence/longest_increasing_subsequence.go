@@ -1,6 +1,21 @@
 package leetcode
 
-func lengthOfLIS(nums []int) int {
+import "sort"
+
+func lengthOfLIS(A []int) int {
+	D := make([]int, 0, len(A))
+	for _, x := range A {
+		i := sort.SearchInts(D, x)
+		if i == len(D) {
+			D = append(D, x)
+		} else {
+			D[i] = x
+		}
+	}
+	return len(D)
+}
+
+func lengthOfLISOld(nums []int) int {
 	n := len(nums)
 	if n == 0 {
 		return 0
