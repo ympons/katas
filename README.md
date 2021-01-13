@@ -8,3 +8,4 @@ This repo shares some of my solved challenges and hacks. I share some of [my gis
 - [LeetCode](https://leetcode.com/problemset/all/)
 - [Caribbean Online Judge (COJ)](https://coj.uci.cu/24h/problems.xhtml)
 - [Exercism](https://exercism.io/tracks/go/exercises)
+- [CSES](https://cses.fi/problemset)
