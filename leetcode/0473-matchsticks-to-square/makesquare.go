@@ -3,15 +3,21 @@ package leetcode
 import "sort"
 
 func makesquare(nums []int) bool {
-	n, s, mx := len(nums), sum(nums...), max(nums...)
-	if n < 4 || s%4 > 0 || mx > s/4 {
+	n, sum, max := len(nums), 0, 0
+	for _, v := range nums {
+		sum += v
+		if max < v {
+			max = v
+		}
+	}
+	if n < 4 || sum%4 > 0 || max > sum/4 {
 		return false
 	}
 	sort.Ints(nums)
 	for i := 0; i < n/2; i++ {
 		nums[i], nums[n-i-1] = nums[n-i-1], nums[i]
 	}
-	target, groups := s/4, make([]int, 4)
+	target, groups := sum/4, make([]int, 4)
 
 	var dfs func(int) bool
 	dfs = func(p int) bool {
@@ -34,22 +40,4 @@ func makesquare(nums []int) bool {
 	}
 
 	return dfs(0)
-}
-
-func sum(nums ...int) int {
-	s := 0
-	for _, v := range nums {
-		s += v
-	}
-	return s
-}
-
-func max(nums ...int) int {
-	mx := 0
-	for _, v := range nums {
-		if mx < v {
-			mx = v
-		}
-	}
-	return mx
 }
