@@ -1,0 +1,4 @@
+# Range Queries
+
+| # | Title | Language |
+|-------:|:------|:------|
