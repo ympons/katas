@@ -9,8 +9,14 @@ import (
 func TestMaxOperations(t *testing.T) {
 	assert := assert.New(t)
 	for _, test := range tests {
-		output := maxOperations(test.nums, test.k)
-		assert.Equal(test.expected, output)
+		assert.Equal(test.expected, maxOperations(test.nums, test.k))
+	}
+}
+
+func TestMaxOperationsMap(t *testing.T) {
+	assert := assert.New(t)
+	for _, test := range tests {
+		assert.Equal(test.expected, maxOperationsMap(test.nums, test.k))
 	}
 }
 
