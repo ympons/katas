@@ -1,6 +1,6 @@
 package leetcode
 
-// O(n^2)
+// Time: O(N^2), Space: O(2*N)
 func longestPalindrome(s string) string {
 	n := len(s)
 	d1, d2 := make([]int, n), make([]int, n)
@@ -34,4 +34,33 @@ func longestPalindrome(s string) string {
 	}
 
 	return s[d2Idx-d2Max : d2Idx+d2Max]
+}
+
+// Time: O(N^2), Space: O(1)
+func longestPalindrome2(s string) string {
+	if len(s) < 1 {
+		return s
+	}
+
+	search := func(left, right int) int {
+		for left >= 0 && right < len(s) && s[left] == s[right] {
+			left--
+			right++
+		}
+		return right - left - 1
+	}
+
+	start, end := 0, 0
+	for i := range s {
+		n := search(i, i)
+		if m := search(i, i+1); n < m {
+			n = m
+		}
+		if n > end-start {
+			start = i - (n-1)/2
+			end = i + n/2
+		}
+	}
+
+	return s[start : end+1]
 }
