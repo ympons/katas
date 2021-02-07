@@ -22,7 +22,7 @@ func findKthLargestHeap(nums []int, k int) int {
 	return heap.Pop(&h).(int)
 }
 
-// IntHeap represents a max-int heap
+// IntHeap represents a min-int heap
 type intHeap []int
 
 func (h intHeap) Len() int            { return len(h) }
